@@ -9,10 +9,17 @@ void print_vector(const std::vector<int>& A) {
 }
 int main() {
 	std::vector<std::vector<int>> VEC = { {1, 2}, { 3,4 }};
-	matrix<int> A;
-	A = VEC;
-	matrix<int> B = A;
 
-	std::vector<int> rowA = A[0];
-	print_vector(rowA);
+	/*
+	linalg::matrix<int> A;
+	A = VEC;
+	linalg::matrix<int> B = A;
+	linalg::matrix<int> C = A *B;
+	C.print();
+
+	std::vector<int> v1 = { 1,2,3,4 };
+	linalg::vector<int> vec = v1;
+	vec[2] = 16;
+	vec.print();
+	*/
 }
