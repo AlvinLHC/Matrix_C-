@@ -3,20 +3,31 @@
 #define LINALG_H
 #include<vector>
 #include<string>
+#include<initializer_list>
 
 namespace linalg {
 	template<class num_type>
 	class vector {
 	private:
-		std::vector<int> vec;
+		std::vector<num_type> vec;
 		int dim;
 
 	public:
+		//---------------------------------------------------------------------------------------------
 		// Constructors
+		//---------------------------------------------------------------------------------------------
 		vector<num_type>() {}; // default constructor
 		vector<num_type>(const std::vector<num_type>& v) : vec(v), dim(v.size()) {}; // type-conversion
 		vector<num_type>(const vector<num_type>& v) : vec(v.vec), dim(v.size()) {};
+		vector<num_type>(const std::initializer_list<num_type>& v) {
+			dim = 0;
+			for (auto item : v) {
+				vec.push_back(item);
+				dim++;
+			}
+		}
 
+		//---------------------------------------------------------------------------------------------
 		// operator overloads
 		vector<num_type> operator+ (const vector<num_type>& v) {
 			if (dim != v.size()) {

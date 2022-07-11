@@ -9,7 +9,10 @@ void print_vector(const std::vector<int>& A) {
 }
 int main() {
 	std::vector<std::vector<int>> VEC = { {1, 2}, { 3,4 }};
-
+	linalg::vector<int> v = { 1,2,3,4 };
+	linalg::vector<linalg::vector<int>> mat = { {1,2},{2,3} };
+	std::cout << mat[1][1] << std::endl;
+	//mat.print();
 	/*
 	linalg::matrix<int> A;
 	A = VEC;
