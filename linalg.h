@@ -26,9 +26,15 @@ namespace linalg {
 				dim++;
 			}
 		}
-
+		vector<num_type>(int vec_size) : dim(vec_size) {
+			vec = {};
+			for (int i = 0; i < vec_size; i++) {
+				vec.push_back(0);
+			}
+		};
 		//---------------------------------------------------------------------------------------------
 		// operator overloads
+		//---------------------------------------------------------------------------------------------
 		vector<num_type> operator+ (const vector<num_type>& v) {
 			if (dim != v.size()) {
 				std::cout << "Lengths of the two vectors do no match." << std::endl;
@@ -66,11 +72,20 @@ namespace linalg {
 			return (*this).vec[n];
 		}
 
+		//---------------------------------------------------------------------------------------------
 		// Other functions
+		//---------------------------------------------------------------------------------------------
 		void push_back(num_type val) {
 			vec.push_back(val);
 		}
+		
 		int size() const { return dim; }
+
+		void clear() {
+			vec = {};
+			dim = 0;
+		}
+
 		void print() const {
 			for (int i = 0; i < dim; i++) {
 				if (i == 0) {
@@ -96,10 +111,6 @@ namespace linalg {
 		int row;
 		int col;
 		vector<vector<num_type>> ary;
-
-		vector<vector<num_type>> init(int r, int c) {
-			return {};
-		}
 	public:
 
 		/* ---------------------------------------------------------
@@ -108,15 +119,21 @@ namespace linalg {
 		*/
 
 		// Default constructor
-		matrix(int r = 3, int c = 3) : row(r), col(c) {
-			ary = {};
-		}
+		matrix(int r = 3, int c = 3) : row(r), col(c) {};
 
 		// Copy constructor
 		template<typename = num_type>
 		matrix(const matrix<num_type>& mat) {
 			row = mat.row;
 			col = mat.col;
+			ary = {};
+			vector<num_type> row_vec = {};
+			for (int i = 0; i < row; i++) {
+				for (int j = 0; j < col; j++) {
+					row_vec.push_back(mat[i][j]);
+				}
+				row_vec.clear();
+			}
 		}
 		// Type-Conversion constructor
 
